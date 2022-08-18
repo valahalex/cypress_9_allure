@@ -1,0 +1,6 @@
+{
+    "baseUrl":"https://google.com",
+    "chromeWebSecurity": false,
+    "viewportHeight":780,
+    "viewportWidth":1440
+}

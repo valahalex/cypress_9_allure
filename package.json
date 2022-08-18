@@ -1,0 +1,22 @@
+{
+  "name": "cypress_9_allure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open",
+    "generate": "allure generate",
+    "open": "allure open",
+    "test:allure": "cypress run --env allure=true"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.1.0"
+  },
+  "dependencies": {
+    "@shelex/cypress-allure-plugin": "^2.28.5",
+    "allure-commandline": "^2.18.1",
+    "cypress-xpath": "^2.0.1"
+  }
+}
