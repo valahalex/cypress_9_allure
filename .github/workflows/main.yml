@@ -10,25 +10,47 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
     - uses: actions/checkout@v2
+
+    - name: Node install
     - uses: actions/setup-node@v2
       with:
         node-version: '14.x'
+
     - name: Install dependencies
       run: npm ci
+
     - name: Install Cypress
       run: npm install cypress --save-dev
+
     - name: Run Cypress tests with allure report
       run: npm run test:allure
-    - name: Generate report
+
+    - name: Save history
+      uses: actions/checkout@v2
       if: always()
-      run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history || true && npm run generate
-    - uses: actions/upload-artifact@v2
-      if: always()
+      continue-on-error: true
       with: 
-        name: allure-report
-        path: ./allure-report
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
+        ref: gh-pages
+        path: gh-pages
+
+    - name: Allure report action from marketplace
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      id: allure-report
       with:
-        folder: ./allure-report
+        allure_results: ./allure-results
+        gh_pages: gh-pages
+        allure_report: allure-report
+        allure_history: allure-history
+
+    - name: Deploy report to Github Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: allure-history
+
+
+    
