@@ -20,7 +20,7 @@ jobs:
         run: npm run test:allure
       - name: Copy History
         if: always()
-        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history || true
+        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
       - name: Generate report
         run: npm run generate
       - name: Upload Results
