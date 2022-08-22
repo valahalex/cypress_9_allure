@@ -25,10 +25,22 @@ jobs:
     - name: Run Cypress tests with allure report
       run: npm run test:allure
 
+    - name: Copy History
+        if: always()
+        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
+
     - name: Generate report
       if: always()
-      run: run 
-     
+      run: run generate
+
+    - name: Upload Results
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: allure-results
+        path: ./allure-results
+
+    - name: Publishing Allure artifact to Github Actions 
     - uses: actions/upload-artifact@v2
       if: always()
       with: 
@@ -39,6 +51,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: ./allure-report
+        target-folder: docs
 
 
     
