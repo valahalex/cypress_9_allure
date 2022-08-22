@@ -1,4 +1,4 @@
-name: Cypres with Cucumber end-to-end tests
+name: Cypres with Allure report
 on: [push]
 permissions:
   contents: write
@@ -39,17 +39,6 @@ jobs:
         with:
           folder: ./allure-report
           branch: gh-pages
-      - name: Pushes docs to another repository
-        uses: cpina/github-action-push-to-another-repository@v1.3
-        if: always()
-        env:
-          API_TOKEN_GITHUB: ${{ GH Action token }} # Instruction where to get token is below
-        with:
-          source-directory: 'docs'
-          destination-github-username: 'valahalex' # Your username
-          destination-repository-name: 'valahalex/cypress_9_allure' # Name of your repo
-          user-email: darzak27@gmail.com # Your email
-          target-branch: learn_ghactions
 
 
     
