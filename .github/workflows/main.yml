@@ -27,7 +27,7 @@ jobs:
 
     - name: Copy History
       if: always()
-      run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
+      run: run cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
 
     - name: Generate report
       if: always()
