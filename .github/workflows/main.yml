@@ -29,6 +29,9 @@ jobs:
         with:
           name: allure-results
           path: ./allure-results
+      - name: Copy History
+        if: always()
+        run: cp -r $(pwd)/allure-results/history $(pwd)/docs/history/.
       - uses: actions/upload-artifact@v2
         if: always()
         with: 
