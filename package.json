@@ -7,7 +7,8 @@
     "test": "cypress open",
     "generate": "allure generate",
     "open": "allure open",
-    "test:allure": "cypress run --env allure=true"
+    "test:allure": "cypress run --env allure=true",
+    "test:allure:open": "cypress open --env allure=true"
   },
   "author": "",
   "license": "ISC",
